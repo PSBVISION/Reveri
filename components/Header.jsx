@@ -15,7 +15,7 @@ const Header = () => {
           <h1 className="text-4xl mx-2 text-gray-700 font-bold font-serif">Reveri</h1>
         </Link>
         <div className="flex items-center gap-4">
-          login
+          login  updated
         </div>
       </nav>
     </header>
