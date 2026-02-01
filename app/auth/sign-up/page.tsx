@@ -27,62 +27,86 @@ const SignUpPage = () => {
       password: "",
     },
   });
+  function onSubmit() {
+    console.log("haanji");
+  }
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Sign Up</CardTitle>
-        <CardDescription>Sign up to get started with Reveri</CardDescription>
-        <CardContent>
-          <form>
-            <FieldGroup>
-              <Controller
-                name="name"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Full Name</FieldLabel>
-                    <Input placeholder="John Doe" {...field} />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Email</FieldLabel>
-                    <Input
-                      placeholder="john.doe@example.com"
-                      type="email"
-                      {...field}
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Password</FieldLabel>
-                    <Input placeholder="********" type="password" {...field} />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-            </FieldGroup>
-            <Button>Sign Up</Button>
-          </form>
-        </CardContent>
+    <Card className="font-victor">
+      <CardHeader className="text-center">
+        <CardTitle className="text-xl font-bold">Sign Up</CardTitle>
+        <CardDescription className="text-sm">
+          Create an account to get started with Reveri
+        </CardDescription>
       </CardHeader>
+      <CardContent>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FieldGroup className="gap-y-4">
+            <Controller
+              name="name"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field>
+                  <FieldLabel>Full Name</FieldLabel>
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="John Doe"
+                    {...field}
+                  />
+                  {fieldState.invalid && (
+                    <FieldError
+                      className="text-xs"
+                      errors={[fieldState.error]}
+                    />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              name="email"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field>
+                  <FieldLabel>Email</FieldLabel>
+                  <Input
+                    placeholder="john.doe@example.com"
+                    aria-invalid={fieldState.invalid}
+                    type="email"
+                    {...field}
+                  />
+                  {fieldState.invalid && (
+                    <FieldError
+                      className="text-xs"
+                      errors={[fieldState.error]}
+                    />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              name="password"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field>
+                  <FieldLabel>Password</FieldLabel>
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="********"
+                    type="password"
+                    {...field}
+                  />
+                  {fieldState.invalid && (
+                    <FieldError
+                      className="text-xs"
+                      errors={[fieldState.error]}
+                    />
+                  )}
+                </Field>
+              )}
+            />
+            <Button>Sign Up</Button>
+          </FieldGroup>
+        </form>
+      </CardContent>
     </Card>
   );
 };
